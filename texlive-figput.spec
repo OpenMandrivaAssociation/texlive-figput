@@ -1,6 +1,6 @@
 Name:		texlive-figput
 Version:	63957
-Release:	1
+Release:	2
 Summary:	Create interactive figures in LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/figput
