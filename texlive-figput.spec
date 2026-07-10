@@ -1,39 +1,25 @@
-Name:		texlive-figput
-Version:	63957
-Release:	2
+%global tl_name figput
+%global tl_revision 76924
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.90
+Release:	%{tl_revision}.1
 Summary:	Create interactive figures in LaTeX
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/figput
+URL:		https://www.ctan.org/tex-archive/graphics/figput
 License:	cc-by-sa-4
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/figput.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/figput.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/figput.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/figput.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-FigPut allows figures to be specified using JavaScript. The
-resulting document can be viewed as a static PDF, as usual, or
-the document can be viewed in a web-browser, in which case the
-figures are interactive. A variety of interactive widgets are
-included.
+FigPut allows figures to be specified using JavaScript. The resulting
+document can be viewed as a static PDF, as usual, or the document can be
+viewed in a web-browser, in which case the figures are interactive. A
+variety of interactive widgets are included.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/figput
-%doc %{_texmfdistdir}/doc/latex/figput
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
